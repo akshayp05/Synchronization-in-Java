@@ -1,0 +1,48 @@
+Example:-
+public class Book {
+	static int total_seats=20;
+	  static synchronized void bookS(int seats) {
+		  if(total_seats>=seats) {
+			  System.out.println(seats+" :book sucsesfully....!!");
+			  total_seats=total_seats-seats;
+			  System.out.println("seats left: "+total_seats);
+		  }else {
+			  System.out.println("seats can not booked.....!");
+			  System.out.println("avilabe seats: "+total_seats);
+		  }}}
+-public class Mythread extends Thread {
+	Book b; int seats;
+	Mythread(Book b,int seats){
+		this.b=b;
+		this.seats=seats;
+	}
+	public void run() {
+		b.bookS(seats);
+	}
+}
+class Mythread2 extends Thread{
+	Book b; int seats;
+	Mythread2(Book b,int seats){
+		this.b=b;
+		this.seats=seats;
+	}
+	public void run() {
+		b.bookS(seats);
+	}
+	}
+-public class ThreadApp {
+  public static void main(String[] args) {
+	Book b1=new Book();
+	Mythread t1=new Mythread(b1, 7);
+	t1.start();
+	Mythread2 t2=new Mythread2(b1, 6);
+	t2.start();
+	                                      //  when we are using multiple object that time also 
+	                                      //  data inconstancy problem ocure
+	Book b2=new Book();
+	Mythread t3=new Mythread(b2, 5);
+	t3.start();
+	Mythread2 t4=new Mythread2(b2, 9);
+	t4.start();
+}
+}
